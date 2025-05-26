@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('mood-select'),
     ];
 
-    // Atualiza a porcentagem com base nas tarefas marcadas
     function updateCompletion() {
         const total = checkboxes.length;
         const done = [...checkboxes].filter(cb => cb.checked).length;
@@ -21,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     checkboxes.forEach(cb => cb.addEventListener('change', updateCompletion));
 
-    // Altera a cor dos selects conforme o valor selecionado
     metricSelects.forEach(select => {
         select.addEventListener('change', () => {
             const val = select.value;
@@ -32,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Evento de clique no botão salvar
     saveButton.addEventListener('click', () => {
         const data = {
             date: new Date().toLocaleDateString(),
@@ -45,23 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
             mood: metricSelects[3].value,
         };
 
-        // Aqui você coloca o seu endpoint real do Google Apps Script:
-        fetch('https://SCRIPT-DO-GOOGLE-AQUI', {
+        fetch('https://script.google.com/macros/s/AKfycbwU-AESlideObF2Ghjt1heIi8s5i1iNofHU67cJsvMizZiZj2ryvlgY_fIt-_lCg87lgw/exec', {
             method: 'POST',
-            mode: 'no-cors', // ignora resposta
+            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
         });
 
-        saveMessage.textContent = 'Dados enviados 🌙';
+        saveMessage.textContent = 'Dados enviados \uD83C\uDF19';
 
-        // 🌟 Alerta final, como prometido:
         setTimeout(() => {
-            alert("🚨 ALERTA DE GLÓRIA: Você não arrumou a cama, mas seu GitHub tá arrumadíssimo.");
+            alert("\uD83D\uDEA8 ALERTA DE GL\u00d3RIA: Voc\u00ea n\u00e3o arrumou a cama, mas seu GitHub t\u00e1 arrumad\u00edssimo.");
         }, 400);
     });
 
-    updateCompletion(); // Inicializa com valor atual
+    updateCompletion();
 });
