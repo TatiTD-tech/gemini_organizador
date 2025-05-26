@@ -1,0 +1,174 @@
+body {
+    font-family: 'Caveat', cursive; /* Fonte lettering para o corpo */
+    background-color: #f4f1de; /* Tom pastel de bege claro */
+    color: #3d405b; /* Tom pastel de azul escuro/acinzentado para o texto */
+    line-height: 1.6;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #f9f5eb; /* Outro tom pastel claro para o container */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+}
+
+h1, h2 {
+    color: #e07a5f; /* Tom pastel de coral para títulos */
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 400; /* Mais delicado */
+}
+
+.date-section,
+.tasks-section,
+.mood-sleep-food-section,
+.save-section {
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: 6px;
+    background-color: #ffffff; /* Branco suave para as seções */
+    border: 1px solid #d8d2cb; /* Borda sutil em tom pastel */
+}
+
+.date-section label,
+.tasks-section h2,
+.mood-sleep-food-section h2,
+.save-section label {
+    display: block;
+    margin-bottom: 10px;
+    color: #81b29a; /* Tom pastel de verde acinzentado para labels/subtítulos */
+    font-weight: bold;
+}
+
+.date-section input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d8d2cb;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.tasks-list {
+    margin-top: 10px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.task-item input {
+    margin-right: 10px;
+}
+
+.completion-percentage {
+    margin-top: 15px;
+    text-align: right;
+    color: #e07a5f;
+    font-weight: bold;
+}
+
+.mood-sleep-food-section .metric-group {
+    margin-bottom: 15px;
+}
+
+.mood-sleep-food-section label {
+    display: block;
+    margin-bottom: 5px;
+    color: #81b29a;
+    font-weight: bold;
+}
+
+.mood-sleep-food-section select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d8d2cb;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #f9f5eb;
+    color: #3d405b;
+}
+
+.save-section button {
+    background-color: #e07a5f; /* Tom pastel de coral para o botão */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.save-section button:hover {
+    background-color: #d46a4d; /* Tom um pouco mais escuro no hover */
+}
+
+.save-section p#save-message {
+    margin-top: 10px;
+    text-align: center;
+    color: #81b29a;
+    font-weight: bold;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin: 15px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Fonte do Google Fonts (Caveat - para lettering) */
+@import url('[https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap](https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap)');
+
+/* Estilos para as opções do select (cores) */
+#water-select option:nth-child(2), /* Bom */
+#food-select option:nth-child(2),
+#sleep-select option:nth-child(2),
+#mood-select option:nth-child(2) {
+    color: #a7c957; /* Verde pastel */
+}
+
+#water-select option:nth-child(3), /* Mais ou menos */
+#food-select option:nth-child(3),
+#sleep-select option:nth-child(3),
+#mood-select option:nth-child(3) {
+    color: #f2e94e; /* Amarelo pastel */
+}
+
+#water-select option:nth-child(4), /* Ruim */
+#food-select option:nth-child(4),
+#sleep-select option:nth-child(4),
+#mood-select option:nth-child(4) {
+    color: #e2786a; /* Vermelho/Laranja pastel */
+}
+
+/* Removendo a seta padrão dos selects para um visual mais minimalista (pode precisar de mais ajustes) */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%233d405b" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: 50%;
+    padding-right: 25px;
+}

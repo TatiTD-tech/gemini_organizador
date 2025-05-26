@@ -9,4 +9,154 @@
     <h1>Olá, GitHub!</h1>
     <p>Este é o meu primeiro arquivo HTML em um projeto versionado com Git e GitHub.</p>
 </body>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Diário de Atividades</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Diário de Atividades</h1>
+
+        <div class="date-section">
+            <label for="current-date">Data:</label>
+            <input type="date" id="current-date" readonly>
+        </div>
+
+        <section class="tasks-section">
+            <h2>Tarefas do Dia</h2>
+            <div id="tasks-list">
+                <div class="task-item">
+                    <input type="checkbox" id="task-arrumar-cama">
+                    <label for="task-arrumar-cama">Arrumar a cama</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-preparar-cafe">
+                    <label for="task-preparar-cafe">Preparar o café</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-remedios-manha">
+                    <label for="task-remedios-manha">Tomar remédios manhã</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-escovar-dentes">
+                    <label for="task-escovar-dentes">Escovar os dentes</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-limpar-caixa-gatos">
+                    <label for="task-limpar-caixa-gatos">Limpar caixa de areia dos gatos</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-milho-galinhas">
+                    <label for="task-milho-galinhas">Milho para as galinhas</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-composteira">
+                    <label for="task-composteira">Levar composteira</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-passear-gatos">
+                    <label for="task-passear-gatos">Passear com os gatos</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-exercicio">
+                    <label for="task-exercicio">Fazer exercício</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-racao-agua-petisco">
+                    <label for="task-racao-agua-petisco">Ração / água / petisco</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-lavar-roupa">
+                    <label for="task-lavar-roupa">Lavar roupa</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-tirar-lixo">
+                    <label for="task-tirar-lixo">Tirar o lixo</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-varrer-casa">
+                    <label for="task-varrer-casa">Varrer a casa</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-preparar-refeicao">
+                    <label for="task-preparar-refeicao">Preparar almoço/janta</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-limpar-fogao">
+                    <label for="task-limpar-fogao">Limpar fogão</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-limpar-banheiro">
+                    <label for="task-limpar-banheiro">Limpar banheiro</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-tirar-po">
+                    <label for="task-tirar-po">Tirar pó dos móveis</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-trocar-roupa-cama">
+                    <label for="task-trocar-roupa-cama">Trocar roupa de cama</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-trocar-caixa-areia">
+                    <label for="task-trocar-caixa-areia">Trocar caixa de areia</label>
+                </div>
+                <div class="task-item">
+                    <input type="checkbox" id="task-cuidar-quintal">
+                    <label for="task-cuidar-quintal">Cuidar do quintal</label>
+                </div>
+            </div>
+            <div class="completion-percentage">
+                Porcentagem de Conclusão: <span id="completion-value">0%</span>
+            </div>
+        </section>
+
+        <section class="mood-sleep-food-section">
+            <h2>Métricas do Dia</h2>
+            <div class="metric-group">
+                <label>Tomar Água:</label>
+                <select id="water-select">
+                    <option value=""></option> <option value="bom">Bom</option>
+                    <option value="mais ou menos">Mais ou menos</option>
+                    <option value="ruim">Ruim</option>
+                </select>
+            </div>
+            <div class="metric-group">
+                <label>Alimentação:</label>
+                <select id="food-select">
+                    <option value=""></option> <option value="bom">Bom</option>
+                    <option value="mais ou menos">Mais ou menos</option>
+                    <option value="ruim">Ruim</option>
+                </select>
+            </div>
+            <div class="metric-group">
+                <label>Sono:</label>
+                <select id="sleep-select">
+                    <option value=""></option> <option value="bom">Bom</option>
+                    <option value="mais ou menos">Mais ou menos</option>
+                    <option value="ruim">Ruim</option>
+                </select>
+            </div>
+            <div class="metric-group">
+                <label>Humor:</label>
+                <select id="mood-select">
+                    <option value=""></option> <option value="bom">Bom</option>
+                    <option value="mais ou menos">Mais ou menos</option>
+                    <option value="ruim">Ruim</option>
+                </select>
+            </div>
+        </section>
+
+        <div class="save-section">
+            <button id="save-button">Salvar Dados do Dia</button>
+            <p id="save-message"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
