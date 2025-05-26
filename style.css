@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
 body {
-    font-family: 'EB Garamond', serif;
+    font-family: 'Staatliches', sans-serif;
     background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
     background-color: #1E1E2F;
     background-blend-mode: overlay;
@@ -52,6 +52,7 @@ h1, h2 {
     color: #89B4FA;
     font-weight: bold;
     font-size: 1.1rem;
+    text-align: center;
 }
 
 .date-section input,
@@ -67,9 +68,11 @@ select {
 }
 
 .task-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* <- isso centraliza */
+  margin-bottom: 8px;
+  gap: 12px
 }
 
 .task-item input {
@@ -84,7 +87,8 @@ select {
 
 .completion-percentage {
     margin-top: 15px;
-    text-align: right;
+    text-align: center;
+    font-size: 2rem;
     color: #F38BA8;
     font-weight: bold;
     font-style: italic;
