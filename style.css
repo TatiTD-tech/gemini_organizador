@@ -55,18 +55,6 @@ h1, h2 {
     text-align: center;
 }
 
-.date-section input,
-select {
-    width: 100%;
-    padding: 12px;
-    background-color: #3B3B55;
-    color: #E0E0E0;
-    border: 1px solid #5C5A72;
-    border-radius: 8px;
-    font-size: 1rem;
-    margin-bottom: 10px;
-}
-
 .task-item {
   display: flex;
   align-items: center;

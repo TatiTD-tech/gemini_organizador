@@ -53,10 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         saveMessage.textContent = 'Dados enviados \uD83C\uDF19';
 
-        setTimeout(() => {
-            alert("\uD83D\uDEA8 ALERTA DE GL\u00d3RIA: Voc\u00ea n\u00e3o arrumou a cama, mas seu GitHub t\u00e1 arrumad\u00edssimo.");
-        }, 400);
-    });
+        });
 
     updateCompletion();
 });
