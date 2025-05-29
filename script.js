@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mood: metricSelects[3].value,
         };
 
-        fetch('https://script.google.com/macros/s/AKfycbwqEa4iLv8FoJGJIyjRBThwEpXVtMV04eOM0ONF32jHPTwm8Fk-cqnrzN0jLGSaAACbOw/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbzBTiGipyH1QpfrVCzRFw_5-s68LSwr3YBpAILUWHGMr1xzjCUtMBkFEwLiC3aRxrnZ5g/exec', {
             method: 'POST',
             mode: 'no-cors',
             headers: {
