@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mood: metricSelects[3].value,
         };
 
-        fetch('https://script.google.com/macros/s/AKfycbzdqJkAF2_5ciH-z_GvusUJoVMxWiIYfat6OcmVpiYFoykjuNR4WOTFUj0-9Y7-QFyLQQ/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbyXbCQiEqEYJ4EEkGCUHLpbHFm8jGmY30CK4YE6g-8pfLKMlr95Vf9E8-eWFh8quo1cEQ/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
