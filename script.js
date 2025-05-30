@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const checkboxes = document.querySelectorAll('.task-item input[type="checkbox"]');
     const completionValue = document.getElementById('completion-value');
@@ -31,11 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     saveButton.addEventListener('click', () => {
+        const tasks = {};
+        checkboxes.forEach(cb => {
+            const label = cb.nextElementSibling.textContent.trim();
+            tasks[label] = cb.checked;
+        });
+
         const data = {
-            date: new Date().toLocaleDateString(),
-            completedTasks: [...checkboxes].filter(cb => cb.checked).length,
-            totalTasks: checkboxes.length,
-            percent: completionValue.textContent,
+            date: new Date().toLocaleDateString('pt-BR'),
+            completionPercentage: completionValue.textContent,
+            tasks: tasks,
             water: metricSelects[0].value,
             food: metricSelects[1].value,
             sleep: metricSelects[2].value,
@@ -44,16 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fetch('https://script.google.com/macros/s/AKfycbxn4f1GNuzrqDNo_QLGRBCCABKVOWVSrhJYjpPeRFl9pqm5raRDd8z2ibRIef9iKDD9Kg/exec', {
             method: 'POST',
-            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
+        })
+        .then(() => {
+            saveMessage.textContent = 'Dados enviados 🌙';
+        })
+        .catch(() => {
+            saveMessage.textContent = 'Erro ao enviar os dados!';
         });
-
-        saveMessage.textContent = 'Dados enviados \uD83C\uDF19';
-
-        });
+    });
 
     updateCompletion();
 });

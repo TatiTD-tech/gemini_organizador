@@ -1,70 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
 body {
     font-family: 'EB Garamond', serif;
-    background-color: #1E1E2F; /* noite */
+    background-color: #1E1E2F;
     color: #E0E0E0;
     margin: 0;
     padding: 0;
-    display: flex; /* Para centralizar o container */
+    display: flex;
     justify-content: center;
-    align-items: flex-start; /* Alinha no topo, pode ser 'center' se preferir centralizar verticalmente */
+    align-items: flex-start;
     min-height: 100vh;
 }
-
 .container {
-    background-color: #2A2A40; /* quase noite */
+    background-color: #2A2A40;
     padding: 30px;
     border-radius: 16px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.4);
     width: 90%;
-    max-width: 900px; /* Aumentado para acomodar duas colunas */
+    max-width: 900px;
     margin: 2rem auto;
 }
-
 h1, h2 {
-    color: #CBA6F7; /* lilás onírico */
+    color: #CBA6F7;
     text-align: center;
     font-weight: 400;
     margin-bottom: 20px;
 }
-
-/* NOVO: Estilos para o Grid de Conteúdo */
 .content-grid {
     display: grid;
-    grid-template-columns: 1fr; /* Padrão mobile: uma coluna */
-    gap: 30px; /* Espaço entre as colunas/linhas */
+    grid-template-columns: 1fr;
+    gap: 30px;
     margin-top: 20px;
 }
-
 .date-section,
 .tasks-section,
 .mood-sleep-food-section,
 .save-section {
-    margin-bottom: 0; /* Remove a margem inferior para evitar espaçamento duplo com o gap do grid */
+    margin-bottom: 0;
     padding: 20px;
     border-radius: 12px;
     background-color: #1E1E2F;
     border: 1px solid #44415A;
 }
-
 .date-section {
-    /* Pode ser fora do grid se quiser que a data ocupe a largura total */
-    margin-bottom: 25px; /* Mantém a margem inferior se for um elemento separado */
+    margin-bottom: 25px;
 }
-
-
 .date-section label,
 .tasks-section h2,
 .mood-sleep-food-section h2,
 .save-section label {
     display: block;
     margin-bottom: 10px;
-    color: #89B4FA; /* azul quieto */
+    color: #89B4FA;
     font-weight: bold;
     font-size: 1.1rem;
 }
-
 .date-section input,
 select {
     width: 100%;
@@ -74,76 +64,62 @@ select {
     border: 1px solid #5C5A72;
     border-radius: 8px;
     font-size: 1rem;
-    /* margin-bottom: 10px; REMOVIDO: a margem inferior já é gerenciada pelo metric-group */
 }
-
-/* Para o input de data no tema escuro, alguns navegadores podem precisar de mais ajustes */
 input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1); /* Inverte a cor do ícone do calendário para ser visível no fundo escuro */
+    filter: invert(1);
 }
-
 .task-item {
     display: flex;
     align-items: center;
     margin-bottom: 8px;
 }
-
-.task-item input[type="checkbox"] { /* Mais específico para checkboxes */
+.task-item input[type="checkbox"] {
     margin-right: 10px;
     transform: scale(1.2);
-    /* Estilos para o checkbox (visuais personalizados) */
-    appearance: none; /* Remove o estilo padrão do navegador */
+    appearance: none;
     -webkit-appearance: none;
     width: 20px;
     height: 20px;
-    border: 2px solid #CBA6F7; /* Borda lilás */
+    border: 2px solid #CBA6F7;
     border-radius: 4px;
-    background-color: #1E1E2F; /* Fundo do checkbox */
+    background-color: #1E1E2F;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.2s, border-color 0.2s;
 }
-
 .task-item input[type="checkbox"]:checked {
-    background-color: #CBA6F7; /* Fundo lilás quando marcado */
+    background-color: #CBA6F7;
     border-color: #CBA6F7;
 }
-
 .task-item input[type="checkbox"]:checked::after {
-    content: '✔'; /* Símbolo de checkmark */
-    color: #1E1E2F; /* Cor escura do checkmark */
+    content: '✔';
+    color: #1E1E2F;
     font-size: 14px;
     font-weight: bold;
 }
-
-
 .task-item label {
     color: #A6ADC8;
     font-size: 1rem;
-    flex-grow: 1; /* Permite que o label ocupe o espaço restante */
-    cursor: pointer; /* Indica que o label é clicável */
+    flex-grow: 1;
+    cursor: pointer;
 }
-
 .completion-percentage {
     margin-top: 15px;
-    text-align: center; /* Centralizado ou alinhar à direita, conforme preferir */
-    color: #F38BA8; /* rosa poético */
+    text-align: center;
+    color: #F38BA8;
     font-weight: bold;
     font-style: italic;
-    font-size: 1.1rem; /* Um pouco maior para destaque */
+    font-size: 1.1rem;
 }
-
 .metric-group {
     margin-bottom: 20px;
 }
-
 .save-section {
-    text-align: center; /* Centraliza o botão */
-    margin-top: 30px; /* Mais espaço acima do botão de salvar */
+    text-align: center;
+    margin-top: 30px;
 }
-
 .save-section button {
     background-color: #89B4FA;
     color: #1E1E2F;
@@ -153,74 +129,59 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
     font-size: 1rem;
     width: 100%;
-    max-width: 300px; /* Limita a largura do botão para não esticar muito */
+    max-width: 300px;
     transition: background-color 0.3s ease;
 }
-
 .save-section button:hover {
     background-color: #7AA2F7;
 }
-
 .save-section p#save-message {
     margin-top: 10px;
     text-align: center;
     color: #A6E3A1;
     font-style: italic;
-    min-height: 1.5em; /* Garante espaço para a mensagem, evitando que a página "salte" */
+    min-height: 1.5em;
 }
-
-/* Responsividade */
-@media (min-width: 768px) { /* A partir de tablets/desktops */
+@media (min-width: 768px) {
     .content-grid {
-        grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+        grid-template-columns: 1fr 1fr;
     }
 }
-
 @media (max-width: 768px) {
     .container {
         width: 95%;
         padding: 20px;
     }
-
     h1 {
         font-size: 1.8rem;
     }
-
     h2 {
         font-size: 1.3rem;
     }
 }
-
-/* Cores para as opções dos selects */
 select option[value="bom"] {
-    color: #A6E3A1; /* Um verde suave para o tema escuro */
-    background-color: #3B3B55; /* Fundo da opção, para contraste */
+    color: #A6E3A1;
+    background-color: #3B3B55;
 }
-
 select option[value="mais ou menos"] {
-    color: #FAE3B0; /* Um amarelo suave para o tema escuro */
+    color: #FAE3B0;
     background-color: #3B3B55;
 }
-
 select option[value="ruim"] {
-    color: #F38BA8; /* O "rosa poético" que você já usou, que combina com vermelho */
+    color: #F38BA8;
     background-color: #3B3B55;
 }
-
 select option[value=""] {
-    color: #888; /* Uma cor mais discreta para a opção inicial */
+    color: #888;
     background-color: #3B3B55;
 }
-
-/* Removendo a seta padrão dos selects para um visual mais minimalista */
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    /* Ajuste o SVG para combinar com seu tema escuro */
     background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%23CBA6F7" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
     background-repeat: no-repeat;
-    background-position: right 10px center; /* Posição da seta */
-    background-size: 18px; /* Tamanho da seta */
-    padding-right: 35px; /* Espaço para a seta */
+    background-position: right 10px center;
+    background-size: 18px;
+    padding-right: 35px;
 }
