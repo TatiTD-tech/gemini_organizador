@@ -1,70 +1,139 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const dateDisplay = document.getElementById('current-date');
-  const progressBarFill = document.getElementById('progress-bar-fill');
+  const checkboxes = document.querySelectorAll('.task-checkbox');
+  const progressBar = document.getElementById('progress-bar-fill');
   const progressPercent = document.getElementById('progress-percentage');
   const progressMessage = document.getElementById('progress-message');
-  const resetButton = document.getElementById('reset-button');
-  const saveButton = document.getElementById('save-button');
-  const exportButton = document.getElementById('export-button');
-  const modal = document.getElementById('export-modal');
-  const closeModal = document.querySelector('.close-modal');
-  const cancelExport = document.getElementById('cancel-export');
+  const dateDisplay = document.getElementById('current-date');
 
   function updateDate() {
-    const now = new Date();
-    const formatted = now.toLocaleDateString('pt-BR', {
-      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-    });
-    dateDisplay.textContent = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+    const today = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    dateDisplay.textContent = today.toLocaleDateString('pt-BR', options);
   }
 
-  function calculateProgress() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  function updateProgress() {
     const total = checkboxes.length;
-    const checked = [...checkboxes].filter(cb => cb.checked).length;
-    const percent = total === 0 ? 0 : Math.round((checked / total) * 100);
-    progressBarFill.style.width = percent + '%';
-    progressPercent.textContent = percent + '%';
-    progressMessage.textContent =
-      percent === 100 ? 'Parabéns! Você completou todas as tarefas!' : 'Continue avançando!';
+    const done = [...checkboxes].filter(cb => cb.checked).length;
+    const percent = total ? Math.round((done / total) * 100) : 0;
+    progressBar.style.width = `${percent}%`;
+    progressPercent.textContent = `${percent}%`;
+
+    if (percent === 0) {
+      progressMessage.textContent = 'Comece seu dia marcando suas tarefas!';
+    } else if (percent < 25) {
+      progressMessage.textContent = `Você completou ${percent}% das tarefas do dia. Continue assim!`;
+    } else if (percent < 50) {
+      progressMessage.textContent = `Bom trabalho! Você já completou ${percent}% das tarefas.`;
+    } else if (percent < 75) {
+      progressMessage.textContent = `Ótimo progresso! ${percent}% das tarefas concluídas.`;
+    } else if (percent < 100) {
+      progressMessage.textContent = `Quase lá! Você já completou ${percent}% das tarefas.`;
+    } else {
+      progressMessage.textContent = `Parabéns! Você completou todas as tarefas do dia! 🎉`;
+    }
   }
 
   function resetJournal() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    if (!confirm('Tem certeza que deseja reiniciar todas as tarefas?')) return;
     checkboxes.forEach(cb => cb.checked = false);
-    calculateProgress();
-    localStorage.clear();
+    document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+    localStorage.removeItem('bulletJournalState');
+    updateProgress();
+    alert('Tudo reiniciado para um novo dia!');
   }
 
   function saveState() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    const data = {};
-    checkboxes.forEach(cb => data[cb.id] = cb.checked);
-    localStorage.setItem('journalData', JSON.stringify(data));
-    alert('Progresso salvo!');
+    const checkboxState = {};
+    checkboxes.forEach(cb => checkboxState[cb.id] = cb.checked);
+    const ratings = {};
+    ['food', 'sleep', 'water', 'mood'].forEach(key => {
+      const selected = document.querySelector(`input[name="${key}-rating"]:checked`);
+      ratings[key] = selected ? selected.value : null;
+    });
+    const state = {
+      date: new Date().toISOString().split('T')[0],
+      checkboxes: checkboxState,
+      ratings
+    };
+    localStorage.setItem('bulletJournalState', JSON.stringify(state));
+    alert('Progresso salvo com sucesso!');
   }
 
   function loadState() {
-    const saved = JSON.parse(localStorage.getItem('journalData')) || {};
-    for (let id in saved) {
+    const savedState = localStorage.getItem('bulletJournalState');
+    if (!savedState) return;
+    const state = JSON.parse(savedState);
+    const today = new Date().toISOString().split('T')[0];
+    if (state.date !== today) return;
+    for (const id in state.checkboxes) {
       const cb = document.getElementById(id);
-      if (cb) cb.checked = saved[id];
+      if (cb) cb.checked = state.checkboxes[id];
     }
-    calculateProgress();
+    for (const key in state.ratings) {
+      if (state.ratings[key]) {
+        const radio = document.getElementById(`${key}-${state.ratings[key]}`);
+        if (radio) radio.checked = true;
+      }
+    }
+    updateProgress();
   }
 
-  // Eventos
-  resetButton?.addEventListener('click', resetJournal);
-  saveButton?.addEventListener('click', saveState);
-  exportButton?.addEventListener('click', () => modal.style.display = 'block');
-  closeModal?.addEventListener('click', () => modal.style.display = 'none');
-  cancelExport?.addEventListener('click', () => modal.style.display = 'none');
+  function openModal() {
+    document.getElementById('export-modal').style.display = 'block';
+  }
 
-  document.addEventListener('change', e => {
-    if (e.target.matches('input[type="checkbox"]')) calculateProgress();
-  });
+  function closeModal() {
+    document.getElementById('export-modal').style.display = 'none';
+  }
 
-  // Inicialização
+  function exportToGoogleSheets() {
+    const sheetId = document.getElementById('sheet-id').value;
+    const appScriptUrl = document.getElementById('app-script-url').value;
+    if (!appScriptUrl) {
+      alert('Por favor, forneça a URL do App Script para exportar os dados.');
+      return;
+    }
+    const today = new Date().toLocaleDateString('pt-BR');
+    const taskData = {};
+    checkboxes.forEach(cb => {
+      const taskLabel = cb.nextElementSibling.querySelector('.task-text')?.textContent || '';
+      taskData[cb.id] = { name: taskLabel, completed: cb.checked };
+    });
+    const ratings = {};
+    ['food', 'sleep', 'water', 'mood'].forEach(item => {
+      const selected = document.querySelector(`input[name="${item}-rating"]:checked`);
+      ratings[item] = selected ? parseInt(selected.value) : 0;
+    });
+    const data = { date: today, tasks: taskData, ratings, sheetId };
+    const exportBtn = document.getElementById('confirm-export');
+    exportBtn.textContent = 'Enviando...';
+    exportBtn.disabled = true;
+
+    fetch(appScriptUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(() => {
+      alert('Dados enviados com sucesso para a planilha!');
+      closeModal();
+    })
+    .catch(() => alert('Ocorreu um erro ao enviar os dados.'))
+    .finally(() => {
+      exportBtn.textContent = 'Confirmar Exportação';
+      exportBtn.disabled = false;
+    });
+  }
+
+  document.getElementById('save-button')?.addEventListener('click', saveState);
+  document.getElementById('reset-button')?.addEventListener('click', resetJournal);
+  document.getElementById('export-button')?.addEventListener('click', openModal);
+  document.querySelector('.close-modal')?.addEventListener('click', closeModal);
+  document.getElementById('cancel-export')?.addEventListener('click', closeModal);
+  document.getElementById('confirm-export')?.addEventListener('click', exportToGoogleSheets);
+  checkboxes.forEach(cb => cb.addEventListener('change', updateProgress));
+
   updateDate();
   loadState();
 });
