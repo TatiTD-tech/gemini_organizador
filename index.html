@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Bullet Journal Diário</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-   
 </head>
 <body>
     <div class="container mx-auto px-4 py-8 max-w-6xl">
-        <!-- Conteúdo da aplicação -->
+        <!-- Cabeçalho -->
         <header class="mb-10 text-center page-header">
             <h1 class="text-4xl font-bold journal-title mb-2">Meu Bullet Journal</h1>
             <div class="flex justify-center items-center mb-3">
@@ -26,8 +26,31 @@
             </div>
         </header>
 
-        <!-- Seções do journal: Cuidados Pessoais, Tarefas Diárias, Outros -->
-        <!-- ... (conteúdo omitido para brevidade, permanece inalterado) ... -->
+        <!-- Seções de tarefas -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 main-container">
+            <!-- Exemplo de tarefa -->
+            <div class="section-card rounded-xl p-6 section-border-daily relative">
+                <h2 class="text-2xl font-bold header-decoration mb-8">Tarefas Diárias</h2>
+                <div class="space-y-2 max-h-[500px] overflow-y-auto pr-2">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="coffee" class="task-checkbox">
+                        <label for="coffee">
+                            <div class="custom-checkbox"></div>
+                            <span class="task-text">Fazer café</span>
+                        </label>
+                    </div>
+                    <div class="notebook-line"></div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="bed" class="task-checkbox">
+                        <label for="bed">
+                            <div class="custom-checkbox"></div>
+                            <span class="task-text">Arrumar a cama</span>
+                        </label>
+                    </div>
+                    <div class="notebook-line"></div>
+                </div>
+            </div>
+        </div>
 
         <!-- Botões de Ação -->
         <div class="mt-10 text-center">
