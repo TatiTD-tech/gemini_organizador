@@ -24,7 +24,6 @@
             display: flex;
             align-items: center;
             margin-bottom: 0.75rem;
-            justify-content: center;
 
         }
         .checkbox-container input[type="checkbox"] {
@@ -805,27 +804,7 @@
         });
         
         // Carregar estado ao iniciar
-        document.addEventListener('DOMContentLoaded', loadState);
-
-        //Adicionando código para ajustar rating
-
-         document.querySelectorAll('.star-rating').forEach(group => {
-        const radios = group.querySelectorAll('input[type="radio"]');
-        radios.forEach(radio => {
-            radio.addEventListener('change', () => {
-                const value = parseInt(radio.value);
-                const labels = Array.from(group.querySelectorAll('label'));
-                labels.forEach((label, index) => {
-                    label.classList.remove('red-zone', 'yellow-zone', 'green-zone');
-                    if (index >= 5 - value) {
-                        if (value <= 2) label.classList.add('red-zone');
-                        else if (value === 3) label.classList.add('yellow-zone');
-                        else label.classList.add('green-zone');
-                    }
-                });
-            });
-        });
-    });
+        document.addEventListener('DOMContentLoaded', loadState);         
     </script>
 </body>
 </html>
