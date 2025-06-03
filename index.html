@@ -608,22 +608,22 @@
             const progressPercentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
             
             document.getElementById('progress-bar-fill').style.width = ${progressPercentage}%;
-            document.getElementById('progress-percentage').textContent = ${progressPercentage}%;
+            document.getElementById('progress-bar-fill').style.width = `${progressPercentage}%';
             
             // Atualizar mensagem de progresso
             const progressMessage = document.getElementById('progress-message');
             if (progressPercentage === 0) {
-                progressMessage.textContent = Comece seu dia marcando suas tarefas!;
+                progressMessage.textContent = "Comece seu dia marcando suas tarefas!";
             } else if (progressPercentage < 25) {
-                progressMessage.textContent = Você completou ${progressPercentage}% das tarefas do dia. Continue assim!;
+                progressMessage.textContent = "Você completou ${progressPercentage}% das tarefas do dia. Continue assim!";
             } else if (progressPercentage < 50) {
-                progressMessage.textContent = Bom trabalho! Você já completou ${progressPercentage}% das tarefas.;
+                progressMessage.textContent = "Bom trabalho! Você já completou ${progressPercentage}% das tarefas.";
             } else if (progressPercentage < 75) {
-                progressMessage.textContent = Ótimo progresso! ${progressPercentage}% das tarefas concluídas.;
+                progressMessage.textContent = "Ótimo progresso! ${progressPercentage}% das tarefas concluídas.";
             } else if (progressPercentage < 100) {
-                progressMessage.textContent = Quase lá! Você já completou ${progressPercentage}% das tarefas.;
+                progressMessage.textContent = "Quase lá! Você já completou ${progressPercentage}% das tarefas.";
             } else {
-                progressMessage.textContent = Parabéns! Você completou todas as tarefas do dia! 🎉;
+                progressMessage.textContent = "Parabéns! Você completou todas as tarefas do dia! 🎉";
             }
         }
 
@@ -638,7 +638,7 @@
             
             const ratings = {};
             ['food', 'sleep', 'water', 'mood'].forEach(item => {
-                const selected = document.querySelector(input[name="${item}-rating"]:checked);
+                const selected = document.querySelector(`input[name="${item}-rating"]:checked`);
                 ratings[item] = selected ? selected.value : null;
             });
             
@@ -674,7 +674,7 @@
                     // Restaurar ratings
                     Object.keys(state.ratings).forEach(item => {
                         if (state.ratings[item]) {
-                            const radio = document.getElementById(${item}-${state.ratings[item]});
+                            const radio = document.getElementById(`${item}-${state.ratings[item]}`);
                             if (radio) {
                                 radio.checked = true;
                             }
