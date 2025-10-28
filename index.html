@@ -261,6 +261,22 @@
     </style>
 </head>
 <body>
+    <script>
+  (function(d,t) {
+    var BASE_URL="https://app.chatwoot.com";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    g.async = true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: 'yJnkMFDAAfr7jhbVg4RFgoJS',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");
+</script>
+
     <div class="container mx-auto px-4 py-8 max-w-6xl">
         <header class="mb-10 text-center page-header">
             <h1 class="text-4xl font-bold journal-title mb-2">Meu Bullet Journal</h1>
