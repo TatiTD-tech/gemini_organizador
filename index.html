@@ -32,13 +32,140 @@
             <p id="progress-percentage" class="text-md text-gray-600 mt-1 text-right">0%</p>
         </div>
 
-        <!-- Aqui ficam as tarefas (mantidas as seções que você já tinha) -->
-        <div class="space-y-4 mb-10">
-            <label><input type="checkbox" class="task-checkbox mr-2">Escovar os dentes</label><br>
-            <label><input type="checkbox" class="task-checkbox mr-2">Tomar banho</label><br>
-            <label><input type="checkbox" class="task-checkbox mr-2">Arrumar a cama</label><br>
-            <label><input type="checkbox" class="task-checkbox mr-2">Fazer café</label>
+       <!-- Seções principais -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 main-container">
+
+    <!-- Cuidados Pessoais -->
+    <section class="section-card rounded-xl p-6 section-border-personal relative">
+      <div class="washi-tape"></div>
+      <h2 class="text-2xl font-bold header-decoration mb-8">Cuidados Pessoais</h2>
+      <div class="space-y-2">
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="teeth" class="task-checkbox">
+          <label for="teeth">
+            <div class="custom-checkbox"></div>
+            <span class="task-text">Escovar os dentes</span>
+          </label>
         </div>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="morning-meds" class="task-checkbox">
+          <label for="morning-meds">
+            <div class="custom-checkbox"></div>
+            <span class="task-text">Tomar remédios da manhã</span>
+          </label>
+        </div>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="shower" class="task-checkbox">
+          <label for="shower">
+            <div class="custom-checkbox"></div>
+            <span class="task-text">Tomar banho</span>
+          </label>
+        </div>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="exercise" class="task-checkbox">
+          <label for="exercise">
+            <div class="custom-checkbox"></div>
+            <span class="task-text">Fazer exercício</span>
+          </label>
+        </div>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="night-meds" class="task-checkbox">
+          <label for="night-meds">
+            <div class="custom-checkbox"></div>
+            <span class="task-text">Tomar remédios da noite</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tarefas Diárias -->
+    <section class="section-card rounded-xl p-6 section-border-daily relative">
+      <div class="paper-clip"></div>
+      <h2 class="text-2xl font-bold header-decoration mb-8">Tarefas Diárias</h2>
+
+      <div class="space-y-2 max-h-[500px] overflow-y-auto pr-2">
+        <template id="daily-tasks-template">
+          <div class="checkbox-container">
+            <input type="checkbox" class="task-checkbox">
+            <label>
+              <div class="custom-checkbox"></div>
+              <span class="task-text"></span>
+            </label>
+          </div>
+        </template>
+
+        <!-- Lista fixa -->
+        <div class="checkbox-container"><input type="checkbox" id="coffee" class="task-checkbox"><label for="coffee"><div class="custom-checkbox"></div><span class="task-text">Fazer café</span></label></div>
+        <div class="checkbox-container"><input type="checkbox" id="bed" class="task-checkbox"><label for="bed"><div class="custom-checkbox"></div><span class="task-text">Arrumar a cama</span></label></div>
+        <div class="checkbox-container"><input type="checkbox" id="sweep" class="task-checkbox"><label for="sweep"><div class="custom-checkbox"></div><span class="task-text">Varrer a casa</span></label></div>
+        <div class="checkbox-container"><input type="checkbox" id="laundry" class="task-checkbox"><label for="laundry"><div class="custom-checkbox"></div><span class="task-text">Lavar roupa</span></label></div>
+        <div class="checkbox-container"><input type="checkbox" id="meals" class="task-checkbox"><label for="meals"><div class="custom-checkbox"></div><span class="task-text">Preparar almoço e janta</span></label></div>
+        <div class="checkbox-container"><input type="checkbox" id="trash" class="task-checkbox"><label for="trash"><div class="custom-checkbox"></div><span class="task-text">Tirar o lixo</span></label></div>
+        <div class="checkbox-container"><input type="checkbox" id="bedding" class="task-checkbox"><label for="bedding"><div class="custom-checkbox"></div><span class="task-text">Trocar roupa de cama e banho</span></label></div>
+        <div class="checkbox-container"><input type="checkbox" id="bathroom" class="task-checkbox"><label for="bathroom"><div class="custom-checkbox"></div><span class="task-text">Limpar banheiro</span></label></div>
+        <div class="checkbox-container"><input type="checkbox" id="litterbox" class="task-checkbox"><label for="litterbox"><div class="custom-checkbox"></div><span class="task-text">Limpar caixa de areia</span></label></div>
+        <div class="checkbox-container"><input type="checkbox" id="cat-food" class="task-checkbox"><label for="cat-food"><div class="custom-checkbox"></div><span class="task-text">Ração, petisco e sachê</span></label></div>
+      </div>
+    </section>
+
+    <!-- Outros -->
+    <section class="section-card rounded-xl p-6 section-border-other relative">
+      <div class="washi-tape" style="left:auto;right:20px;background:linear-gradient(45deg,#c17a74 25%,#e6dfd0 25%,#e6dfd0 50%,#c17a74 50%,#c17a74 75%,#e6dfd0 75%);"></div>
+      <h2 class="text-2xl font-bold header-decoration mb-8">Outros</h2>
+
+      <div class="space-y-6">
+        <div class="rating-group">
+          <p class="font-medium text-gray-700 mb-2">Alimentação balanceada</p>
+          <div class="star-rating" id="food-rating">
+            <input type="radio" id="food-5" name="food-rating" value="5"><label for="food-5" class="green-zone"></label>
+            <input type="radio" id="food-4" name="food-rating" value="4"><label for="food-4" class="green-zone"></label>
+            <input type="radio" id="food-3" name="food-rating" value="3"><label for="food-3" class="yellow-zone"></label>
+            <input type="radio" id="food-2" name="food-rating" value="2"><label for="food-2" class="red-zone"></label>
+            <input type="radio" id="food-1" name="food-rating" value="1"><label for="food-1" class="red-zone"></label>
+          </div>
+        </div>
+
+        <div class="rating-group">
+          <p class="font-medium text-gray-700 mb-2">Sono</p>
+          <div class="star-rating" id="sleep-rating">
+            <input type="radio" id="sleep-5" name="sleep-rating" value="5"><label for="sleep-5" class="green-zone"></label>
+            <input type="radio" id="sleep-4" name="sleep-rating" value="4"><label for="sleep-4" class="green-zone"></label>
+            <input type="radio" id="sleep-3" name="sleep-rating" value="3"><label for="sleep-3" class="yellow-zone"></label>
+            <input type="radio" id="sleep-2" name="sleep-rating" value="2"><label for="sleep-2" class="red-zone"></label>
+            <input type="radio" id="sleep-1" name="sleep-rating" value="1"><label for="sleep-1" class="red-zone"></label>
+          </div>
+        </div>
+
+        <div class="rating-group">
+          <p class="font-medium text-gray-700 mb-2">Água</p>
+          <div class="star-rating" id="water-rating">
+            <input type="radio" id="water-5" name="water-rating" value="5"><label for="water-5" class="green-zone"></label>
+            <input type="radio" id="water-4" name="water-rating" value="4"><label for="water-4" class="green-zone"></label>
+            <input type="radio" id="water-3" name="water-rating" value="3"><label for="water-3" class="yellow-zone"></label>
+            <input type="radio" id="water-2" name="water-rating" value="2"><label for="water-2" class="red-zone"></label>
+            <input type="radio" id="water-1" name="water-rating" value="1"><label for="water-1" class="red-zone"></label>
+          </div>
+        </div>
+
+        <div class="rating-group">
+          <p class="font-medium text-gray-700 mb-2">Humor</p>
+          <div class="star-rating" id="mood-rating">
+            <input type="radio" id="mood-5" name="mood-rating" value="5"><label for="mood-5" class="green-zone"></label>
+            <input type="radio" id="mood-4" name="mood-rating" value="4"><label for="mood-4" class="green-zone"></label>
+            <input type="radio" id="mood-3" name="mood-rating" value="3"><label for="mood-3" class="yellow-zone"></label>
+            <input type="radio" id="mood-2" name="mood-rating" value="2"><label for="mood-2" class="red-zone"></label>
+            <input type="radio" id="mood-1" name="mood-rating" value="1"><label for="mood-1" class="red-zone"></label>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
 
         <!-- Botões -->
         <button id="reset-button" class="btn-primary py-3 px-6 rounded-lg font-bold mx-2 shadow-md transition">Reiniciar</button>
